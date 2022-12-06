@@ -15,14 +15,23 @@ final class GameViewModel: ObservableObject {
     @Published var moves: [Move?] = Array(repeating: nil, count: 9)
     @Published var isGameBoardDisabled = false
     @Published var alertItem: AlertItem?
+    private var itIsPlayerOneTurn: Bool = true
     
     
-    func processPlayerMove(for position: Int) {
+    func processPlayerMove(for position: Int, isSinglePlayer: Bool, playerOneName: String, playerTwoName: String) {
         if(isSquareOccupied(in: moves, forIndex: position)) { return }
-        moves[position] = Move(player: .human, boardIndex: position)
+        moves[position] = Move(player: itIsPlayerOneTurn ? .playerOne : .playerTwo, boardIndex: position)
         
-        if checkWinCondition(for: .human, in: moves) {
-            alertItem = AlertContext.humanWin
+        if checkWinCondition(for: itIsPlayerOneTurn ? .playerOne : .playerTwo, in: moves) {
+            
+            if isSinglePlayer {
+                alertItem = AlertContext.humanWin
+            } else {
+                AlertContext.playerOneName = playerOneName
+                AlertContext.playerTwoName = playerTwoName
+                alertItem = itIsPlayerOneTurn ? AlertContext.playerOneWin : AlertContext.playerTwoWin
+            }
+            
             return
         }
         
@@ -31,22 +40,26 @@ final class GameViewModel: ObservableObject {
             return
         }
         
-        isGameBoardDisabled = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
-            let computerPosition = determineComputerMovePosition(in: moves)
-            moves[computerPosition] = Move(player: .computer, boardIndex: computerPosition)
-            isGameBoardDisabled = false
+        if isSinglePlayer {
+            isGameBoardDisabled = true
             
-            if checkWinCondition(for: .computer, in: moves) {
-                alertItem = AlertContext.computerWin
-                return
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+                let computerPosition = determineComputerMovePosition(in: moves)
+                moves[computerPosition] = Move(player: .computer, boardIndex: computerPosition)
+                isGameBoardDisabled = false
+                
+                if checkWinCondition(for: .computer, in: moves) {
+                    alertItem = AlertContext.computerWin
+                    return
+                }
+                
+                if checkForDraw(in: moves) {
+                    alertItem = AlertContext.draw
+                    return
+                }
             }
-            
-            if checkForDraw(in: moves) {
-                alertItem = AlertContext.draw
-                return
-            }
+        } else {
+            itIsPlayerOneTurn.toggle()
         }
     }
     
@@ -70,7 +83,7 @@ final class GameViewModel: ObservableObject {
         }
         
         // If AI can't win, then block
-        let humanMoves =  moves.compactMap{ $0 }.filter { $0.player == .human }
+        let humanMoves =  moves.compactMap{ $0 }.filter { $0.player == .playerOne }
         let humanPositions = Set(humanMoves.map { $0.boardIndex})
         
         for pattern in winPatterns {
@@ -112,5 +125,6 @@ final class GameViewModel: ObservableObject {
     
     func resetGame() {
         moves = Array(repeating: nil, count: 9)
+        itIsPlayerOneTurn = true
     }
 }

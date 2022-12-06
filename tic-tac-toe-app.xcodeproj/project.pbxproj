@@ -13,6 +13,9 @@
 		9B28F4C52935017600F2667E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B28F4C42935017600F2667E /* Preview Assets.xcassets */; };
 		9B28F4CC29355DFD00F2667E /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28F4CB29355DFD00F2667E /* Alerts.swift */; };
 		9B28F4CE2936841600F2667E /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28F4CD2936841600F2667E /* GameViewModel.swift */; };
+		9BD6F0CE293E498100272225 /* MultiPlayerSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD6F0CD293E498100272225 /* MultiPlayerSelectView.swift */; };
+		9BD6F0D2293E66FC00272225 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD6F0D1293E66FC00272225 /* ButtonView.swift */; };
+		9BD6F0D4293EB93200272225 /* SelectModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD6F0D3293EB93200272225 /* SelectModeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		9B28F4C42935017600F2667E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9B28F4CB29355DFD00F2667E /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		9B28F4CD2936841600F2667E /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		9BD6F0CD293E498100272225 /* MultiPlayerSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPlayerSelectView.swift; sourceTree = "<group>"; };
+		9BD6F0D1293E66FC00272225 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		9BD6F0D3293EB93200272225 /* SelectModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				9B28F4BF2935017600F2667E /* GameView.swift */,
+				9BD6F0CD293E498100272225 /* MultiPlayerSelectView.swift */,
+				9BD6F0D3293EB93200272225 /* SelectModeView.swift */,
 			);
 			path = pages;
 			sourceTree = "<group>";
@@ -101,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				9B28F4CB29355DFD00F2667E /* Alerts.swift */,
+				9BD6F0D1293E66FC00272225 /* ButtonView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -175,9 +184,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BD6F0D4293EB93200272225 /* SelectModeView.swift in Sources */,
 				9B28F4CE2936841600F2667E /* GameViewModel.swift in Sources */,
 				9B28F4C02935017600F2667E /* GameView.swift in Sources */,
+				9BD6F0D2293E66FC00272225 /* ButtonView.swift in Sources */,
 				9B28F4CC29355DFD00F2667E /* Alerts.swift in Sources */,
+				9BD6F0CE293E498100272225 /* MultiPlayerSelectView.swift in Sources */,
 				9B28F4BE2935017600F2667E /* tic_tac_toe_appApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
